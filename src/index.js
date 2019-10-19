@@ -118,7 +118,7 @@
     this.process()
   }
 
-  function MeshLineRaycast(raycaster, intersects) {
+  function raycast(raycaster, intersects) {
     var inverseMatrix = new THREE.Matrix4()
     var ray = new THREE.Ray()
     var sphere = new THREE.Sphere()
@@ -183,7 +183,7 @@
       }
     }
   }
-  MeshLine.prototype.raycast = MeshLineRaycast
+  MeshLine.prototype.raycast = raycast
   MeshLine.prototype.compareV3 = function(a, b) {
     var aa = a * 6
     var ab = b * 6
@@ -720,15 +720,15 @@
       exports = module.exports = {
         MeshLine: MeshLine,
         MeshLineMaterial: MeshLineMaterial,
-        MeshLineRaycast: MeshLineRaycast,
+        raycast: raycast,
       }
     }
     exports.MeshLine = MeshLine
     exports.MeshLineMaterial = MeshLineMaterial
-    exports.MeshLineRaycast = MeshLineRaycast
+    exports.raycast = raycast
   } else {
     root.MeshLine = MeshLine
     root.MeshLineMaterial = MeshLineMaterial
-    root.MeshLineRaycast = MeshLineRaycast
+    root.raycast = raycast
   }
 }.call(this))

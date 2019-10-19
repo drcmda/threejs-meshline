@@ -10,7 +10,7 @@ threejs-meshline is a replacement for `THREE.Line`, it allows you to create line
 - Supports BufferGeometry
 - Extends `THREE.BufferGeometry` and can be used in regular meshes as a geometry
 - New `setVertices` and `setBufferArray` functions so you no longer need to create a geometry prior to a `MeshLine`
-- Raycast is exposed as `MeshLineRaycast` and can be used like `mesh.raycast = MeshLineRaycast`
+- Raycast is exposed as `raycast` and can be used like `mesh.raycast = raycast`
 - Raycast accounts for line width
 - Extra setters and getters to help with declaritive libraries like [react-three-fiber](https://github.com/react-spring/react-three-fiber)
 
@@ -99,10 +99,10 @@ import * as meshline from 'threejs-meshline'
 
 extend(meshline)
 
-function Line({ vertices, width, color }) {
+function DashedLine({ vertices, width, color }) {
   return (
     <Canvas>
-      <mesh>
+      <mesh raycast={meshline.raycast} onClick={() => console.log("clicked")}>
         <meshLine attach="geometry" vertices={vertices} />
         <meshLineMaterial
           attach="material"
@@ -110,8 +110,8 @@ function Line({ vertices, width, color }) {
           depthTest={false}
           lineWidth={width}
           color={color}
-          dashArray={0.05}
-          dashRatio={0.95}
+          dashArray={0.5}
+          dashRatio={0.2}
         />
       </mesh>
     </Canvas>
